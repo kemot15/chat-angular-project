@@ -64,3 +64,5 @@ G:\Angular\WSB\Projekt\ChatAngularProject\chat-angular-project\obj\Debug\net5.0\
 G:\Angular\WSB\Projekt\ChatAngularProject\chat-angular-project\obj\Debug\net5.0\ChatAngularProject.RazorTargetAssemblyInfo.cache
 G:\Angular\WSB\Projekt\ChatAngularProject\chat-angular-project\obj\Debug\net5.0\ChatAngularProject.csproj.CopyComplete
 G:\Angular\WSB\Projekt\ChatAngularProject\chat-angular-project\obj\Debug\net5.0\ChatAngularProject.genruntimeconfig.cache
+G:\Angular\WSB\Projekt\ChatAngularProject\chat-angular-project\bin\Debug\net5.0\Web\chat-angular-project\db.json
+G:\Angular\WSB\Projekt\ChatAngularProject\chat-angular-project\bin\Debug\net5.0\Web\chat-angular-project\routes.json
