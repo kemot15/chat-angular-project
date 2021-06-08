@@ -9,7 +9,7 @@ import { Post } from 'src/app/model/post.model';
 })
 export class PostListComponent implements OnInit {
 
-  postFormFroup: FormGroup;
+  postFormGroup: FormGroup;
   posts: Post[];
 
   constructor(private formBuilder: FormBuilder) { }
@@ -20,7 +20,7 @@ export class PostListComponent implements OnInit {
   }
 
   private initPostFormGroup(): void {
-    this.postFormFroup = this.formBuilder.group({
+    this.postFormGroup = this.formBuilder.group({
       id: 0,
       title: [undefined],
       text: [undefined]
@@ -33,8 +33,12 @@ export class PostListComponent implements OnInit {
         id: 1,
         title: 'test',
         text: 'test'
+      },
+      {
+        id: 2,
+        title: 'test2',
+        text: 'test2'
       }
     ]
   }
-
 }
