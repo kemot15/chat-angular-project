@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Post } from 'src/app/model/post.model';
+import { DatabaseService } from '../services/database.service';
 
 @Component({
   selector: 'app-post-list',
@@ -10,13 +12,14 @@ import { Post } from 'src/app/model/post.model';
 export class PostListComponent implements OnInit {
 
   postFormGroup: FormGroup;
-  posts: Post[];
+  posts: Observable<Post[]>;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private databaseService: DatabaseService) { }
 
   ngOnInit(): void {
+    console.log("cos tam");
     this.initPosts();
-    this.initPostFormGroup();
+   this.initPostFormGroup();
   }
 
   private initPostFormGroup(): void {
@@ -28,17 +31,7 @@ export class PostListComponent implements OnInit {
   }
 
   private initPosts(): void {
-    this.posts = [
-      {
-        id: 1,
-        title: 'test',
-        text: 'test'
-      },
-      {
-        id: 2,
-        title: 'test2',
-        text: 'test2'
-      }
-    ]
+    this.posts = this.databaseService.getPost();
+    console.log(this.posts);
   }
 }

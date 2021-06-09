@@ -3,5 +3,5 @@
         <li>{{post.id}} {{post.title}} {{post.text}}</li>
     </ul> -->
     <!-- <input type="text" *ngFor="let post of posts" formControlName="text" > -->
-    <app-post-item *ngFor="let post of posts" [post]="post"></app-post-item>
+    <app-post-item *ngFor="let post of posts | async" [post]="post"></app-post-item>
 </form>

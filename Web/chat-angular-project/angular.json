@@ -56,6 +56,14 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "mock": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.mock.ts"
+                }
+              ]
             }
           }
         },
@@ -67,6 +75,9 @@
           "configurations": {
             "production": {
               "browserTarget": "chat-angular-project:build:production"
+            },
+            "mock": {
+              "browserTarget": "chat-angular-project:build:mock"
             }
           }
         },
