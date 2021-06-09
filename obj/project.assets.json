@@ -201,11 +201,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Angular\\WSB\\Projekt\\ChatAngularProject\\ChatAngularProject\\ChatAngularProject.csproj",
+      "projectUniqueName": "G:\\Angular\\WSB\\Projekt\\ChatAngularProject\\chat-angular-project\\ChatAngularProject.csproj",
       "projectName": "ChatAngularProject",
-      "projectPath": "G:\\Angular\\WSB\\Projekt\\ChatAngularProject\\ChatAngularProject\\ChatAngularProject.csproj",
+      "projectPath": "G:\\Angular\\WSB\\Projekt\\ChatAngularProject\\chat-angular-project\\ChatAngularProject.csproj",
       "packagesPath": "C:\\Users\\Tommy\\.nuget\\packages\\",
-      "outputPath": "G:\\Angular\\WSB\\Projekt\\ChatAngularProject\\ChatAngularProject\\obj\\",
+      "outputPath": "G:\\Angular\\WSB\\Projekt\\ChatAngularProject\\chat-angular-project\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

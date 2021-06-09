@@ -1,0 +1,22 @@
+import { HttpClient } from "@angular/common/http";
+import { Inject, Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import {environment} from "src/environments/environment";
+import { Post } from "../model/post.model";
+
+@Injectable({
+  providedIn: "root",
+})
+export class ApiService {
+  private url = environment.api.path + '/posts';
+
+  constructor(private httpClient: HttpClient) {}
+
+  savePost(post: Post): Observable<Post> {
+    return this.httpClient.post<Post>(this.url, post);
+  }
+
+  getPosts(): Observable<Post[]> {
+    return this.httpClient.get<Post[]>(this.url);
+  }
+}
