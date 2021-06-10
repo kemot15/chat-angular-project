@@ -1,14 +1,8 @@
-<p-card header='{{post.title}}' subheader='{{post.text}}'[style]="{width: '500px'}" styleClass="p-card-shadow">
-    <ng-template pTemplate="header">
-        <img alt="Card" src="assets/showcase/images/usercard.png">
-    </ng-template>
+<p-panel header='{{post.title}}' styleClass="p-card-shadow container" >
     <p>{{post.text}}</p>
     <ng-template pTemplate="footer">
-        <p-button (click)="showDialog()" icon="pi pi-external-link" label="Edytuj post"></p-button>
-        <p-button label="Save" icon="pi pi-check"></p-button>
-        <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
+        <p-button (click)="showDialog()" icon="pi pi-pencil" label="Edytuj post"></p-button>
+        <p-button (click)="deletePost()" label="Usuń post" icon="pi pi-trash" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
         <app-add-edit-post (refresh)="postRefresh($event)" [display]="display" [post]="post"></app-add-edit-post>
-
-        {{post.id}}
     </ng-template>
-</p-card>
+</p-panel>

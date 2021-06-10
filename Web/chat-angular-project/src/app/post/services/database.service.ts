@@ -25,5 +25,9 @@ export class DatabaseService {
     return this.apiService.updatePost(post);
   }
 
+  deletePost(postID: number): Observable<void> {
+    return this.apiService.deletePost(postID);
+  }
+
 
 }

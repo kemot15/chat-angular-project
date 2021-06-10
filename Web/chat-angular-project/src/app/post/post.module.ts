@@ -23,6 +23,7 @@ import {ToastModule} from 'primeng/toast';
 import {InputTextModule} from 'primeng/inputtext';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {DropdownModule} from 'primeng/dropdown';
+import {PanelModule} from 'primeng/panel';
 
 
 
@@ -51,7 +52,8 @@ import {DropdownModule} from 'primeng/dropdown';
 		ToastModule,
     InputTextModule,
     ProgressBarModule,   
-    CardModule
+    CardModule,
+    PanelModule
   ]
 })
 export class PostModule { }

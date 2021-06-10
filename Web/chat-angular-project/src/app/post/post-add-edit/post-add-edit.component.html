@@ -20,15 +20,14 @@
   ></textarea>
   <ng-template pTemplate="footer">
     <p-button
-      (click)="display = false"
-      label="Cancel"
+      (click)="cancel()"
+      label="Anuluj"
       styleClass="p-button-text"
     ></p-button>
     <p-button
       (click)="save()"
-      label="Save"
+      label="Zapisz"
       styleClass="p-button-text"
     ></p-button>
   </ng-template>
-  {{post | json}}
 </p-dialog>

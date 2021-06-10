@@ -20,16 +20,16 @@ export class PostListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-   this.initPostFormGroup();
+  //  this.initPostFormGroup();
   }
 
-  private initPostFormGroup(): void {
-    this.postFormGroup = this.formBuilder.group({
-      id: 0,
-      title: [undefined],
-      text: [undefined]
-    })
-  }
+  // private initPostFormGroup(): void {
+  //   this.postFormGroup = this.formBuilder.group({
+  //     id: 0,
+  //     title: [undefined],
+  //     text: [undefined]
+  //   })
+  // }
 
   private initPosts(): void {
     this.posts = this.databaseService.getPosts();
@@ -38,7 +38,6 @@ export class PostListComponent implements OnInit {
   formRefresh(refreshed: Post){
     if (!refreshed){
       this.display = false;
-      console.log(this.display);
       this.initPosts();
     }
   }
