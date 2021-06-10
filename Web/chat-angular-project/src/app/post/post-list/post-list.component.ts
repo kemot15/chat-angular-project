@@ -13,12 +13,13 @@ export class PostListComponent implements OnInit {
 
   postFormGroup: FormGroup;
   posts: Observable<Post[]>;
+  display: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private databaseService: DatabaseService) { }
+  constructor(private formBuilder: FormBuilder, private databaseService: DatabaseService) {
+    this.initPosts();
+   }
 
   ngOnInit(): void {
-    console.log("cos tam");
-    this.initPosts();
    this.initPostFormGroup();
   }
 
@@ -31,7 +32,18 @@ export class PostListComponent implements OnInit {
   }
 
   private initPosts(): void {
-    this.posts = this.databaseService.getPost();
-    console.log(this.posts);
+    this.posts = this.databaseService.getPosts();
+  }
+
+  formRefresh(refreshed: Post){
+    if (!refreshed){
+      this.display = false;
+      console.log(this.display);
+      this.initPosts();
+    }
+  }
+
+  showDialog(): void {
+    this.display = true;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Post } from 'src/app/model/post.model';
 
@@ -7,15 +7,21 @@ import { Post } from 'src/app/model/post.model';
   templateUrl: './post-item.component.html',
   styleUrls: ['./post-item.component.scss']
 })
-export class PostItemComponent implements OnInit {
+export class PostItemComponent implements OnInit, OnChanges {
 
   @Input() post: Post;
+  @Output() refresh:  EventEmitter<boolean>;
   postFormGroup: FormGroup;
+  display: Boolean = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {
+   }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
 
   ngOnInit(): void {
-    this.initPostFormGroup();
+    // this.initPostFormGroup();
   }
 
   private initPostFormGroup(): void {
@@ -25,5 +31,27 @@ export class PostItemComponent implements OnInit {
       text: this.post.text
     })
   } 
+
+  showDialog(): void {
+    this.display = true;
+  }
+
+  // initRefresh(): void {
+  //   this.refresh = new EventEmitter<boolean>();
+  // }
+
+  // pushToParent(): void {
+  //   this.refresh.emit(true);
+  // }
+
+  postRefresh(refreshed: Post){
+    if (refreshed){
+      this.display = false;
+      console.log(this.display);     
+      this.post.text = refreshed.text;
+      this.post.title = refreshed.title;
+      this.post.id = refreshed.id;
+    }
+  }
 
 }

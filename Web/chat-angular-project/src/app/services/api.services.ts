@@ -19,4 +19,12 @@ export class ApiService {
   getPosts(): Observable<Post[]> {
     return this.httpClient.get<Post[]>(this.url);
   }
+
+  getPost(postID: number): Observable<Post> {
+    return this.httpClient.get<Post>(`${this.url}/${postID}`);
+  }
+
+  updatePost(post: Post): Observable<void> {
+    return this.httpClient.put<void>(`${this.url}/${post.id}`, post);
+  }
 }

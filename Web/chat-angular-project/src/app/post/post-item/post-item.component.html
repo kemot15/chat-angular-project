@@ -4,7 +4,11 @@
     </ng-template>
     <p>{{post.text}}</p>
     <ng-template pTemplate="footer">
+        <p-button (click)="showDialog()" icon="pi pi-external-link" label="Edytuj post"></p-button>
         <p-button label="Save" icon="pi pi-check"></p-button>
         <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
+        <app-add-edit-post (refresh)="postRefresh($event)" [display]="display" [post]="post"></app-add-edit-post>
+
+        {{post.id}}
     </ng-template>
 </p-card>

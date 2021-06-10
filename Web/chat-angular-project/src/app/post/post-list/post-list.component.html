@@ -1,7 +1,5 @@
-<form [formGroup]="postFormGroup">      
-    <!-- <ul *ngFor="let post of posts">
-        <li>{{post.id}} {{post.title}} {{post.text}}</li>
-    </ul> -->
-    <!-- <input type="text" *ngFor="let post of posts" formControlName="text" > -->
+<form [formGroup]="postFormGroup">
+    <p-button (click)="showDialog()" icon="pi pi-external-link" label="Dodaj post"></p-button>
     <app-post-item *ngFor="let post of posts | async" [post]="post"></app-post-item>
+    <app-add-edit-post (refresh)="formRefresh($event)" [display]="display"></app-add-edit-post>
 </form>
