@@ -13,25 +13,36 @@ export class PostListComponent implements OnInit {
 
   postFormGroup: FormGroup;
   posts: Observable<Post[]>;
+  display: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private databaseService: DatabaseService) { }
+  constructor(private formBuilder: FormBuilder, private databaseService: DatabaseService) {
+    this.initPosts();
+   }
 
   ngOnInit(): void {
-    console.log("cos tam");
-    this.initPosts();
-   this.initPostFormGroup();
+  //  this.initPostFormGroup();
   }
 
-  private initPostFormGroup(): void {
-    this.postFormGroup = this.formBuilder.group({
-      id: 0,
-      title: [undefined],
-      text: [undefined]
-    })
-  }
+  // private initPostFormGroup(): void {
+  //   this.postFormGroup = this.formBuilder.group({
+  //     id: 0,
+  //     title: [undefined],
+  //     text: [undefined]
+  //   })
+  // }
 
   private initPosts(): void {
-    this.posts = this.databaseService.getPost();
-    console.log(this.posts);
+    this.posts = this.databaseService.getPosts();
+  }
+
+  formRefresh(refreshed: Post){
+    if (!refreshed){
+      this.display = false;
+      this.initPosts();
+    }
+  }
+
+  showDialog(): void {
+    this.display = true;
   }
 }
