@@ -24,6 +24,9 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {DropdownModule} from 'primeng/dropdown';
 import {PanelModule} from 'primeng/panel';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {TimelineModule} from 'primeng/timeline';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 
@@ -36,7 +39,7 @@ import {PanelModule} from 'primeng/panel';
   imports: [
     CommonModule,
     PostRoutingModule,
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
@@ -53,7 +56,10 @@ import {PanelModule} from 'primeng/panel';
     InputTextModule,
     ProgressBarModule,   
     CardModule,
-    PanelModule
+    PanelModule,
+    InputTextareaModule,
+    TimelineModule,
+    ProgressSpinnerModule
   ]
 })
 export class PostModule { }

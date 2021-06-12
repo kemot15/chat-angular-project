@@ -1,33 +1,41 @@
-<p-dialog
-  header="Header"
-  [(visible)]="display"
-  [breakpoints]="{ '960px': '75vw' }"
-  [style]="{ width: '50vw' }"
-  [baseZIndex]="10000"
-  [draggable]="false"
-  [resizable]="false"
->
-  <span class="p-float-label">
-    <input id="float-input" type="text" pInputText [(ngModel)]="title" />
-    <label for="float-input">Tytuł</label>
+<form [formGroup]="postFormGroup">
+  <p-dialog
+    [header]="header"
+    [(visible)]="display"
+    [breakpoints]="{ '960px': '75vw' }"
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    [draggable]="false"
+    [resizable]="false"
+    [closable]="false"
+  >
+  <div>
+    <span class="p-float-label p-col-12">
+      <input id="float-input" type="text" pInputText formControlName="title" />
+      <label for="float-input">Tytuł</label>
+    </span>
+  </div>
+  <div class="p-field p-col-12">
+    <span class="p-float-label">
+    <textarea
+      type="text"
+      rows="10"
+      cols="30"
+      pInputTextarea
+      formControlName="text"
+      id="float-text"
+    ></textarea>
+    <label for="float-text">Tekst</label>
   </span>
-  <textarea
-    [rows]="5"
-    [cols]="30"
-    pInputTextarea
-    autoResize="autoResize"
-    [(ngModel)]="text"
-  ></textarea>
-  <ng-template pTemplate="footer">
-    <p-button
-      (click)="cancel()"
-      label="Anuluj"
-      styleClass="p-button-text"
-    ></p-button>
-    <p-button
-      (click)="save()"
-      label="Zapisz"
-      styleClass="p-button-text"
-    ></p-button>
-  </ng-template>
-</p-dialog>
+</div>
+    <ng-template pTemplate="footer">
+      <span class="p-buttonset">
+        <button pButton type="button" (click)="save()" label="Zapisz" icon="pi pi-check"></button>
+        <button pButton type="button" (click)="cancel()" label="Anuluj" icon="pi pi-times"></button>
+    </span>
+    </ng-template>
+  </p-dialog>
+</form>
+
+      <!-- class="form-input" -->
+      <!-- class="form-input" -->

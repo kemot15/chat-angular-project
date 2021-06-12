@@ -1,9 +1,14 @@
 <form class="container">
+    
     <div class="add-button">
         <p-button (click)="showDialog()" icon="pi pi-plus" label="Dodaj post"></p-button>
     </div>
     <div>
-        <app-post-item *ngFor="let post of posts | async" [post]="post" (refresh)="formRefresh($event)"></app-post-item>
-        <app-add-edit-post (refresh)="formRefresh($event)" [display]="display"></app-add-edit-post>
+        <app-post-item *ngFor="let post of posts" [post]="post" (refresh)="formRefresh($event)" class="post-item"></app-post-item>
+        <app-add-edit-post (refresh)="formRefresh($event)" [display]="display" [header]="header"></app-add-edit-post>
     </div>
+    <div>
+        <p-progressSpinner  styleClass="custom-spinner spinner" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s" *ngIf="isSpinning"></p-progressSpinner>
+    </div>
+    
 </form>
