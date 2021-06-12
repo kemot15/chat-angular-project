@@ -6,6 +6,8 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { PostModule } from './post/post.module';
 import { AppRoutingModule } from './app-routing.module';
 
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +16,8 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     PostModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

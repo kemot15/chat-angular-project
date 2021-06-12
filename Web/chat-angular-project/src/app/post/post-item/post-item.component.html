@@ -1,8 +1,8 @@
-<p-panel header='{{post.title}}' styleClass="p-card-shadow container" >
+<p-panel header='{{post.title}}' class="p-card-shadow" >
     <p>{{post.text}}</p>
     <ng-template pTemplate="footer">
         <p-button (click)="showDialog()" icon="pi pi-pencil" label="Edytuj post"></p-button>
         <p-button (click)="deletePost()" label="Usuń post" icon="pi pi-trash" styleClass="p-button-secondary" [style]="{'margin-left': '.5em'}"></p-button>
-        <app-add-edit-post (refresh)="postRefresh($event)" [display]="display" [post]="post"></app-add-edit-post>
+        <app-add-edit-post (refresh)="postRefresh($event)" [display]="display" [post]="post" [header]="header"></app-add-edit-post>
     </ng-template>
 </p-panel>

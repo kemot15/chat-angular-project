@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Post } from 'src/app/model/post.model';
 import { DatabaseService } from '../services/database.service';
+import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-post-item',
@@ -11,9 +12,10 @@ import { DatabaseService } from '../services/database.service';
 export class PostItemComponent implements OnInit {
 
   @Input() post: Post;
-  @Output() refresh:  EventEmitter<Post>;
+  @Output() refresh:  EventEmitter<Post | number>;
   postFormGroup: FormGroup;
-  display: Boolean = false;
+  display: Boolean;// = false;
+  header="Edytuj post";
 
   constructor(private formBuilder: FormBuilder, private databaseService: DatabaseService) { 
     this.initRefresh();
@@ -33,22 +35,24 @@ export class PostItemComponent implements OnInit {
   } 
 
   showDialog(): void {
+    console.log(this.display);
     this.display = true;
+    
   } 
 
   postRefresh(refreshed: Post){
     if (refreshed){
-      this.display = false;
       this.post.text = refreshed.text;
       this.post.title = refreshed.title;
       this.post.id = refreshed.id;
     }
+    this.display = false;
   }
 
   deletePost(): void {
     if (this.post){
       this.databaseService.deletePost(this.post.id);
-      this.pushToPostList(null);
+      this.pushToPostList(this.post.id);
     }
   }
 
@@ -56,7 +60,7 @@ export class PostItemComponent implements OnInit {
     this.refresh = new EventEmitter<Post>();
   }
 
-  pushToPostList(post: Post): void {
+  pushToPostList(post: Post | number): void {
     this.refresh.emit(post);
   }
 
