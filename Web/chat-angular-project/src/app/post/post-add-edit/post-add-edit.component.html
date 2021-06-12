@@ -11,9 +11,10 @@
   >
   <div>
     <span class="p-float-label p-col-12">
-      <input id="float-input" type="text" pInputText formControlName="title" />
+      <input id="float-input" type="text" pInputText formControlName="title" [ngClass]="{'ng-invalid ng-dirty' : showIsTitleInvalid}"/>
       <label for="float-input">Tytuł</label>
     </span>
+    <error *ngIf="showIsTitleInvalid" [errors]="titleError"></error>
   </div>
   <div class="p-field p-col-12">
     <span class="p-float-label">
@@ -24,9 +25,11 @@
       pInputTextarea
       formControlName="text"
       id="float-text"
+      [ngClass]="{'ng-invalid ng-dirty' : showIsTextInvalid}"
     ></textarea>
-    <label for="float-text">Tekst</label>
+    <label for="float-text" >Tekst</label>
   </span>
+  <error *ngIf="showIsTextInvalid" [errors]="textError"></error>
 </div>
     <ng-template pTemplate="footer">
       <span class="p-buttonset">
@@ -36,6 +39,3 @@
     </ng-template>
   </p-dialog>
 </form>
-
-      <!-- class="form-input" -->
-      <!-- class="form-input" -->

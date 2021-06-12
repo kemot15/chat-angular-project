@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Post } from 'src/app/model/post.model';
 import { DatabaseService } from '../services/database.service';
-import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-post-item',
@@ -21,25 +20,13 @@ export class PostItemComponent implements OnInit {
     this.initRefresh();
   }
 
-  ngOnInit(): void {
-    // this.initPostFormGroup();
-    
+  ngOnInit(): void {    
   }
 
-  private initPostFormGroup(): void {
-    this.postFormGroup = this.formBuilder.group({
-      id: this.post.id,
-      title: this.post.title,
-      text: this.post.text
-    })
-  } 
-
   showDialog(): void {
-    console.log(this.display);
-    this.display = true;
-    
-  } 
-
+    this.display = true;    
+  }
+  
   postRefresh(refreshed: Post){
     if (refreshed){
       this.post.text = refreshed.text;

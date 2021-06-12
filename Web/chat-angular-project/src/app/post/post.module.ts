@@ -27,14 +27,14 @@ import {PanelModule} from 'primeng/panel';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {TimelineModule} from 'primeng/timeline';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
-
-
+import { ErrorComponent } from '../shared/components/control/error/error.component';
 
 @NgModule({
   declarations: [
     PostListComponent,
     PostItemComponent,
-    AddEditPostComponent
+    AddEditPostComponent,
+    ErrorComponent
   ],
   imports: [
     CommonModule,

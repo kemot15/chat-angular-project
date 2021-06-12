@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { Post } from 'src/app/model/post.model';
 import { DatabaseService } from '../services/database.service';
-import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-post-list',
@@ -13,7 +11,7 @@ import { PostService } from '../services/post.service';
 export class PostListComponent implements OnInit {
 
   postFormGroup: FormGroup;
-  posts: Post[];// Observable<Post[]>;
+  posts: Post[];
   arrayPost: Post[];
   display: boolean = false;
   header: string = "Dodaj post";
@@ -24,25 +22,14 @@ export class PostListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-  //  this.initPostFormGroup();
   }
-
-  // private initPostFormGroup(): void {
-  //   this.postFormGroup = this.formBuilder.group({
-  //     id: 0,
-  //     title: [undefined],
-  //     text: [undefined]
-  //   })
-  // }
 
   private initPosts(): void {
     this.isSpinning = true;
-    console.log(this.isSpinning);
     this.databaseService.getPosts().subscribe(
       (posts: Post[]) => {
         this.posts = posts;
         this.isSpinning = false;
-        console.log(this.isSpinning);
       },
       (err: any) => console.log(err)
     )
@@ -61,7 +48,6 @@ export class PostListComponent implements OnInit {
   }
 
   showDialog(): void {
-    console.log(this.display);
     this.display = true;
   }
 }
