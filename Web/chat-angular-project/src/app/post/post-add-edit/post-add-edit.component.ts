@@ -1,9 +1,9 @@
-import { Component, Input, OnInit, Output, EventEmitter, OnDestroy, OnChanges, SimpleChanges } from "@angular/core";
-import { Form, FormBuilder, FormGroup, RequiredValidator, Validators } from "@angular/forms";
+import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges, Self } from "@angular/core";
+import { AbstractControl, FormBuilder, FormGroup, NgControl, ValidationErrors, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { Post } from "src/app/model/post.model";
 import { DatabaseService } from "../services/database.service";
-import { PostService } from "../services/post.service";
+import { AddEditServiceValidator } from "../services/validators/add-edit-post.service";
 
 @Component({
   selector: "app-add-edit-post",
@@ -21,32 +21,57 @@ export class AddEditPostComponent implements OnInit, OnChanges {
 
   title: string = "";
   text: string = "";
-  
 
-  constructor(private databaseService: DatabaseService, private route: ActivatedRoute, private formBuilder: FormBuilder,) {
+  get showIsTextInvalid(): boolean {
+    let text = this.postFormGroup.controls.text;
+    return text.invalid && text.touched;
+  }
+
+  get titleError(): ValidationErrors {
+    return this.postFormGroup.controls.title.errors;
+  }
+  get showIsTitleInvalid(): boolean {
+    let title = this.postFormGroup.controls.title;
+    return title.invalid && title.touched;
+  }
+
+  get textError(): ValidationErrors {
+    return this.postFormGroup.controls.text.errors;
+  }
+
+  constructor(private databaseService: DatabaseService, private route: ActivatedRoute, private formBuilder: FormBuilder, private validatorService: AddEditServiceValidator) {
     this.initRefresh(); 
-    this.initPostFormGroup(); 
+    this.initPostFormGroup();
+    this.initFormValidator();
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.initPost();
   }
 
   ngOnInit(): void {   
-    this.initPost();     
+    this.initPost(); 
+    this.initFormValidator();
   }
 
   save(): void {
-    this.setupPost();
-    if (this.post.id === 0){
-      this.saveNewPost();
-    }
-    else {
-      this.saveEditetPost();
+    if (this.postFormGroup.valid){    
+      this.setupPost();
+      if (this.post.id === 0){
+        this.saveNewPost();
+      }
+      else {
+        this.saveEditetPost();
+      }
     }
   }
   
   cancel(): void {
+    this.cleareValidators();
     this.pushToPostList(false);
+  }
+  cleareValidators() {
+    this.postFormGroup.reset();
+    this.postFormGroup.updateValueAndValidity();
   }
 
   setupPost(): void {
@@ -120,4 +145,7 @@ export class AddEditPostComponent implements OnInit, OnChanges {
     })
   }
 
+  private initFormValidator(): void {
+    this.validatorService.setFormValidators(this.postFormGroup);
+  }
 }
