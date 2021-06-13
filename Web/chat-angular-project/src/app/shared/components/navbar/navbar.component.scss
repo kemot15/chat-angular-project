@@ -4,7 +4,7 @@
     height: 5rem;
     box-shadow: 0 0 4px rgb(0 0 0 / 255);  
     border-bottom: 1px solid rgb(0 0 0 / 255); 
-    // padding: 1rem;
+    padding: 1rem;
     // margin: 2rem;
 
     .header-logo-container {
@@ -14,19 +14,22 @@
         .header-text {
             font-size: 1.2rem;
             font-weight: 500;
-            vertical-align: middle;
+            // vertical-align: middle;
+            align-items: center;  
         }
     }    
 
     .header-menu-container {
         display: flex;
         align-items: center;  
+        margin-right: 1rem;
+
         
         .header-nav-containter {
             display: flex;
+
     
             .nav-item {
-                margin-right: 1rem;
                 text-decoration: none;
                 color: #000;
             }
