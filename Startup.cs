@@ -11,6 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using ChatAngularProject.Tools;
+using ChatAngularProject.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChatAngularProject
 {
@@ -18,7 +22,8 @@ namespace ChatAngularProject
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            Configuration = AppVariableConfiguration.ConfigurationRoot();
+            //Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -26,6 +31,29 @@ namespace ChatAngularProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var cs = Configuration.GetConnectionString("SQL");
+            services.AddDbContext<AngularProjectContext>(builder => builder.UseSqlServer(Configuration.GetConnectionString("SQL")));
+            //services.AddScoped<IPostService, PostService>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowOrigins", builder => builder
+                .WithOrigins(new string[] {
+                    "http://localhost:4200",
+                    "https://localhost:4200"
+                })
+                 .SetIsOriginAllowed((host) => true)
+                 .AllowAnyMethod()
+                 .AllowAnyHeader()
+                 .AllowCredentials());
+            });
+
+            services.AddControllersWithViews();
+            // In production, the Angular files will be served from this directory
+            //services.AddSpaStaticFiles(configuration =>
+            //{
+            //    configuration.RootPath = "Web/chat-angular-project/dist";
+            //});
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -47,6 +75,8 @@ namespace ChatAngularProject
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("AllowOrigins");
 
             app.UseAuthorization();
 
