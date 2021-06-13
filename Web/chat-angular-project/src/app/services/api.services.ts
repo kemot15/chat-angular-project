@@ -28,7 +28,8 @@ export class ApiService {
     return this.httpClient.put<void>(`${this.url}/${post.id}`, post);
   }
 
-  deletePost(postID: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.url}/${postID}`);
-  }
+  deletePost(postID: number): void {
+    console.log(`${this.url}/${postID}`);
+    const req = this.httpClient.delete<void>(`${this.url}/${postID}`);
+    req.subscribe();      }
 }
